@@ -1,0 +1,43 @@
+music21.chord.Chord A3 F4
+music21.chord.Chord A3 D4
+music21.chord.Chord A3 F4
+music21.chord.Chord B-3 E4
+music21.chord.Chord B-3 D4
+music21.chord.Chord B-3 C4
+music21.chord.Chord A3 F4
+music21.chord.Chord A3 D4
+music21.chord.Chord A3 F4
+music21.chord.Chord B-3 E4
+music21.chord.Chord B-3 D4
+music21.chord.Chord B-3 C4
+music21.chord.Chord A3 F4
+music21.chord.Chord A3 E4
+music21.chord.Chord A3 F4
+music21.chord.Chord B-3 G4
+music21.chord.Chord B-3 F4
+music21.chord.Chord B-3 D4
+music21.chord.Chord A3 C4
+music21.chord.Chord A3 C4
+music21.chord.Chord A3 C4
+music21.chord.Chord A3 C4
+music21.chord.Chord A3 C4
+music21.chord.Chord F4
+music21.chord.Chord D4
+music21.chord.Chord E-4
+music21.chord.Chord D4
+music21.chord.Chord G3
+music21.chord.Chord A3
+music21.chord.Chord B-3
+music21.chord.Chord C4
+music21.chord.Chord D4
+music21.chord.Chord C4
+music21.chord.Chord F3
+music21.chord.Chord G3
+music21.chord.Chord A3
+music21.chord.Chord C4
+music21.chord.Chord F4
+music21.chord.Chord D4
+music21.chord.Chord B-3 E4
+music21.chord.Chord B-3 F4
+music21.chord.Chord B-3 G4
+music21.chord.Chord A3 F4
