@@ -19,6 +19,7 @@ def read_midi_parameter(midi_file):
     temp_midi_chords = pattern.chordify()
     temp_midi.insert(0, temp_midi_chords)
     music_key = temp_midi.analyze('key')
+    #print('Key: ', music_key)
     time_signature = temp_midi_chords.getTimeSignatures()[0]
     max_notes_per_chord = 4
     #temp_midi_chords.show("text")
@@ -36,11 +37,13 @@ def read_midi_parameter(midi_file):
             hold = beat_offset - offset
             for k in range(hold):
                 note_beat = str(temp_midi_chords[i-1]).strip('<>')
+                #print(note_beat)
                 fp.write(note_beat)
                 fp.write("\n")
                 offset = offset + 1
 
         note_beat = str(temp_midi_chords[i]).strip('<>')
+        #print(note_beat)
         fp.write(note_beat)
         fp.write("\n")
 
@@ -60,7 +63,9 @@ def read_midi_parameter(midi_file):
         read_size = np.size(read.split())
         #print read_size
         if not read:
-            #print(note_list)
+            #print('end note: ', note_list)
+            if not note_list:
+                break
             measure_chord = chord.Chord(note_list)
             roman_numeral = roman.romanNumeralFromChord(measure_chord, music_key)
             ret.append(simplify_roman_name(roman_numeral))
@@ -70,13 +75,20 @@ def read_midi_parameter(midi_file):
         
         for i in range(1, read_size):
             note1 = read.split()[i]
-            note_list.append(note1)
+            if note1 == 'rest':
+                note1 = note1_pre
+                note_list.append(note1)
+            else:
+                note_list.append(note1)
+                note1_pre = note1
         #i = i + 1
-        
+        #print(note_list)
         if count % time_signature.beatCount == 0: #or count == total_measure:
             #print(note_list)
             measure_chord = chord.Chord(note_list)
+            #print(measure_chord)
             roman_numeral = roman.romanNumeralFromChord(measure_chord, music_key)
+            #print(roman_numeral)
             ret.append(simplify_roman_name(roman_numeral))
             note_list = []
         
