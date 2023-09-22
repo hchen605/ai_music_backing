@@ -63,6 +63,8 @@ def predict_one_song(predictor, wav_path, song_id, results, do_svs, tomidi, outp
     test_dataset = SeqDataset(wav_path, song_id, do_svs=do_svs)
 
     results = predictor.predict(test_dataset, results=results, onset_thres=onset_thres, offset_thres=offset_thres)
+    # for notes in results['1']:
+    #     print(notes[2])#65...
     if tomidi:
         convert_to_midi(results, song_id, output_path)
     return results
