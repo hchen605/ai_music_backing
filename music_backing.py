@@ -96,7 +96,7 @@ def main(args):
         device = args.device
     # print ("use", device)
     os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
-    '''
+    #'''
     my_predictor = EffNetPredictor(device=device, model_path=args.model_path)
     song_id = '1'
     results = {}
@@ -115,7 +115,7 @@ def main(args):
         print ("\"input\" argument is not a valid path/directory, no audio is trancribed......")
 
     print('=== transcription done ====')
-    '''
+    #'''
     midi_path = output_path[:-4] + '_backing.mid'
     pattern = music_accomp.music_accomp(output_path)
     midi.write_midifile(midi_path, pattern)
