@@ -10,6 +10,7 @@ import torch
 from pathlib import Path
 import tempfile
 import traceback
+import music_backing
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 predictor = EffNetPredictor(device=device, model_path=str(
@@ -145,6 +146,7 @@ class TranscribeSinging(TuneflowPlugin):
         results = {}
         results = predictor.predict(test_dataset, results=results,
                                     onset_thres=onset_threshold, offset_thres=silence_threshold)
+        music_backing.convert_to_midi(results, '1', './data/plug_trans.mid')
 
         for notes in results['1']:
             note_start_time_within_audio = notes[0]
