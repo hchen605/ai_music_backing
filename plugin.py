@@ -114,6 +114,10 @@ class TranscribeSinging(TuneflowPlugin):
             track_id=track.get_id()),
             assign_default_sampler_plugin=True)
 
+        new_midi_track_3 = song.create_track(type=TrackType.MIDI_TRACK, index=song.get_track_index(
+            track_id=track.get_id()),
+            assign_default_sampler_plugin=True)
+
         tmp_file = tempfile.NamedTemporaryFile(delete=True, suffix=clip_audio_data_list[0]["audioData"]["format"])
         tmp_file.write(clip_audio_data_list[0]["audioData"]["data"])
 
@@ -129,6 +133,11 @@ class TranscribeSinging(TuneflowPlugin):
                                           clip,
                                           './data/plug_trans.mid',
                                         )
+            TranscribeSinging._midi_back_drum(new_midi_track_3,
+                                          clip,
+                                          './data/plug_trans.mid',
+                                        )
+            
         except Exception as e:
             print(traceback.format_exc())
         finally:
@@ -177,7 +186,7 @@ class TranscribeSinging(TuneflowPlugin):
 
     @staticmethod
     def _midi_back(
-        new_midi_track_2: Track,
+        new_midi_track: Track,
         audio_clip: Clip,
         midi_file='./data/plug_trans.mid'):
         beat, music_key, time_signature, chord, pattern = read_midi_parameter.read_midi_parameter(midi_file)
@@ -190,7 +199,7 @@ class TranscribeSinging(TuneflowPlugin):
         #print  measure_num
         beat_per_measure = time_signature.beatCount
         #print beat_per_measure
-        new_clip = new_midi_track_2.create_midi_clip(
+        new_clip = new_midi_track.create_midi_clip(
             clip_start_tick=audio_clip.get_clip_start_tick(),
             clip_end_tick=audio_clip.get_clip_end_tick(),
             insert_clip=True
@@ -224,3 +233,79 @@ class TranscribeSinging(TuneflowPlugin):
             # bass_track.append(on)
             # off = midi.NoteOffEvent(tick = beat*beat_per_measure, velocity = 80, pitch = root)
             # bass_track.append(off)
+
+    def _midi_back_drum(
+        new_midi_track: Track,
+        audio_clip: Clip,
+        midi_file='./data/plug_trans.mid'):
+        beat, music_key, time_signature, chord, pattern = read_midi_parameter.read_midi_parameter(midi_file)
+        # print('Beat: ', beat)
+        # print('Key: ', music_key)
+        # print('Time Signature: ', time_signature)
+        # print('Chord Progress: ', chord)
+
+        measure_num = np.size(chord)
+        #print  measure_num
+        beat_per_measure = time_signature.beatCount
+        #print beat_per_measure
+        new_clip = new_midi_track.create_midi_clip(
+            clip_start_tick=audio_clip.get_clip_start_tick(),
+            clip_end_tick=audio_clip.get_clip_end_tick(),
+            insert_clip=True
+        )
+        audio_clip_start_tick = audio_clip.get_clip_start_tick()
+
+        #drum
+        HH = 51
+        SS = 37
+        SD = 38
+        BD = 35
+        LT = 41
+        HT = 48
+        first = 0
+        first_measure = 0
+        #beat = beat * beat_per_measure
+
+
+        for i in range(measure_num):
+            first = 0
+            for j in range(beat_per_measure):
+                if first == 0:
+                    if i % 2 == 0:
+                        hit = BD
+                    else:
+                        hit = SD
+                else:
+                    hit = HH
+                if i == measure_num - 1:
+                    # on = midi.NoteOnEvent(tick = beat*first_measure, velocity = 80, pitch = HH)
+                    # drum_track.append(on)
+                    # on = midi.NoteOnEvent(tick = 0, velocity = 80, pitch = BD)
+                    # drum_track.append(on)
+                    note_start_tick = beat*j+i*beat_per_measure*beat + audio_clip_start_tick
+                    note_end_tick = beat*j+i*beat_per_measure*beat+beat + audio_clip_start_tick
+                    new_clip.create_note(
+                    pitch=hit,
+                    velocity=80,
+                    start_tick=note_start_tick,
+                    end_tick=note_end_tick
+                )
+                    break
+                else:
+                    #on = midi.NoteOnEvent(tick = beat*first_measure, velocity = 80, pitch = hit)
+                    note_start_tick = beat*j+i*beat_per_measure*beat + audio_clip_start_tick
+                    note_end_tick = beat*j+i*beat_per_measure*beat+beat + audio_clip_start_tick
+                    new_clip.create_note(
+                    pitch=hit,
+                    velocity=80,
+                    start_tick=note_start_tick,
+                    end_tick=note_end_tick
+                )
+                first = 1
+                first_measure = 1
+
+            
+        new_clip.adjust_clip_left(clip_start_tick=audio_clip.get_clip_start_tick(), resolve_conflict=False)
+        new_clip.adjust_clip_right(clip_end_tick=audio_clip.get_clip_end_tick(), resolve_conflict=False)
+
+         
