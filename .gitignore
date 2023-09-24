@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 .DS_Store
-
+flask.mid
 #log
 Experiments/phasen_vb/logs/*
 Experiments/phasen_vb/checkpoints/*
