@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Processing Result</title>
+    <title>Processed Music Result</title>
+    <style>
+        body {
+            background-color: rgb(49, 107, 126);
+        }
+    </style>
 </head>
 <body>
-    <h1>Processing Result</h1>
-    <p><a href="{{ url_for('download_file', filename=result_file) }}" download>Download Result</a></p>
+    <div style="text-align: center;">
+        <h1>Processed Music Result</h1>
+        <p><a href="{{ url_for('download_file', filename=result_file) }}" download>Download Result</a></p>
+    </div>
 </body>
 </html>
