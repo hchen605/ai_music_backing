@@ -28,8 +28,6 @@ music21.chord.Chord F4
 music21.chord.Chord F4
 music21.chord.Chord D4
 music21.chord.Chord G4
-music21.chord.Chord G4
-music21.chord.Chord G4
 music21.chord.Chord C4
 music21.chord.Chord C4
 music21.chord.Chord C#4
@@ -41,6 +39,7 @@ music21.chord.Chord A4
 music21.chord.Chord A4
 music21.chord.Chord A4 B-4
 music21.chord.Chord A4
+music21.chord.Chord G4
 music21.chord.Chord G4
 music21.chord.Chord G4
 music21.chord.Chord G4

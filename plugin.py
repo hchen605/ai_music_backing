@@ -199,6 +199,8 @@ class TranscribeSinging(TuneflowPlugin):
         #print  measure_num
         beat_per_measure = time_signature.beatCount
         #print beat_per_measure
+
+        new_midi_track.set_instrument(33, False)#bass
         new_clip = new_midi_track.create_midi_clip(
             clip_start_tick=audio_clip.get_clip_start_tick(),
             clip_end_tick=audio_clip.get_clip_end_tick(),
@@ -248,6 +250,8 @@ class TranscribeSinging(TuneflowPlugin):
         #print  measure_num
         beat_per_measure = time_signature.beatCount
         #print beat_per_measure
+
+        new_midi_track.set_instrument(9, True)#drum
         new_clip = new_midi_track.create_midi_clip(
             clip_start_tick=audio_clip.get_clip_start_tick(),
             clip_end_tick=audio_clip.get_clip_end_tick(),
