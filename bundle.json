@@ -8,7 +8,7 @@
         },
         "pluginId": "singing-transcription",
         "pluginDisplayName": {
-            "zh": "hh智能人声转MIDI",
+            "zh": "Hsin's Music Accompaniment Generation",
             "en": "Singing Transcription"
         },
         "pluginDescription": {

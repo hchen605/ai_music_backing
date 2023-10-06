@@ -34,7 +34,7 @@ class TranscribeSinging(TuneflowPlugin):
         return {
             "clipAudioData": {
                 "displayName": {
-                    "zh": 'hh音频',
+                    "zh": 'Audio',
                     "en": 'Audio',
                 },
                 "defaultValue": None,
@@ -57,12 +57,12 @@ class TranscribeSinging(TuneflowPlugin):
             },
             "onsetThreshold": {
                 "displayName": {
-                    "zh": '音符起始阈值hh',
+                    "zh": 'Onset threshold',
                     "en": 'Onset threshold',
                 },
                 "defaultValue": 0.4,
                 "description": {
-                    "zh": '该阈值越大，转录出的MIDI音符数越少',
+                    "zh": 'The higher the threshold, the lower the number of MIDI notes that will be transcribed',
                     "en": 'The higher the threshold, the lower the number of MIDI notes that will be transcribed',
                 },
                 "widget": {
@@ -76,12 +76,12 @@ class TranscribeSinging(TuneflowPlugin):
             },
             "silenceThreshold": {
                 "displayName": {
-                    "zh": '音符结束阈值hh',
+                    "zh": 'Silence threshold',
                     "en": 'Silence threshold',
                 },
                 "defaultValue": 0.5,
                 "description": {
-                    "zh": '该阈值越大，转录出的MIDI音符越长',
+                    "zh": 'The higher the threshold, the longer the MIDI note transcribed',
                     "en": 'The higher the threshold, the longer the MIDI note transcribed',
                 },
                 "widget": {
