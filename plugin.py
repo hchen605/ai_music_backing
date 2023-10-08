@@ -113,8 +113,12 @@ class TranscribeSinging(TuneflowPlugin):
         new_midi_track_2 = song.create_track(type=TrackType.MIDI_TRACK, index=song.get_track_index(
             track_id=track.get_id()),
             assign_default_sampler_plugin=True)
-
+        
         new_midi_track_3 = song.create_track(type=TrackType.MIDI_TRACK, index=song.get_track_index(
+            track_id=track.get_id()),
+            assign_default_sampler_plugin=True)
+
+        new_midi_track_4 = song.create_track(type=TrackType.MIDI_TRACK, index=song.get_track_index(
             track_id=track.get_id()),
             assign_default_sampler_plugin=True)
 
@@ -129,11 +133,15 @@ class TranscribeSinging(TuneflowPlugin):
                                                False,
                                                params["onsetThreshold"],
                                                params["silenceThreshold"])
-            TranscribeSinging._midi_back(new_midi_track_2,
+            TranscribeSinging._midi_back_bass(new_midi_track_2,
                                           clip,
                                           './data/plug_trans.mid',
                                         )
-            TranscribeSinging._midi_back_drum(new_midi_track_3,
+            TranscribeSinging._midi_back_string(new_midi_track_3,
+                                          clip,
+                                          './data/plug_trans.mid',
+                                        )
+            TranscribeSinging._midi_back_drum(new_midi_track_4,
                                           clip,
                                           './data/plug_trans.mid',
                                         )
@@ -177,7 +185,7 @@ class TranscribeSinging(TuneflowPlugin):
 
             new_clip.create_note(
                 pitch=note_pitch,
-                velocity=100,
+                velocity=20,
                 start_tick=note_start_tick,
                 end_tick=note_end_tick
             )
@@ -185,7 +193,7 @@ class TranscribeSinging(TuneflowPlugin):
         new_clip.adjust_clip_right(clip_end_tick=audio_clip.get_clip_end_tick(), resolve_conflict=False)
 
     @staticmethod
-    def _midi_back(
+    def _midi_back_bass(
         new_midi_track: Track,
         audio_clip: Clip,
         midi_file='./data/plug_trans.mid'):
@@ -209,7 +217,7 @@ class TranscribeSinging(TuneflowPlugin):
         audio_clip_start_tick = audio_clip.get_clip_start_tick()
         #bass note
         first = 0
-        beat = beat * beat_per_measure
+        beat = int(beat * beat_per_measure * 120/90)
         for i in range(measure_num):
             chord_measure = chord[i]
             #print chord_measure
@@ -235,6 +243,51 @@ class TranscribeSinging(TuneflowPlugin):
             # bass_track.append(on)
             # off = midi.NoteOffEvent(tick = beat*beat_per_measure, velocity = 80, pitch = root)
             # bass_track.append(off)
+
+    def _midi_back_string(
+        new_midi_track: Track,
+        audio_clip: Clip,
+        midi_file='./data/plug_trans.mid'):
+        beat, music_key, time_signature, chord, pattern = read_midi_parameter.read_midi_parameter(midi_file)
+        print('Beat: ', beat)
+        print('Key: ', music_key)
+        print('Time Signature: ', time_signature)
+        print('Chord Progress: ', chord)
+
+        measure_num = np.size(chord)
+        #print  measure_num
+        beat_per_measure = time_signature.beatCount
+        #print beat_per_measure
+
+        new_midi_track.set_instrument(48, False)#string
+        new_clip = new_midi_track.create_midi_clip(
+            clip_start_tick=audio_clip.get_clip_start_tick(),
+            clip_end_tick=audio_clip.get_clip_end_tick(),
+            insert_clip=True
+        )
+        audio_clip_start_tick = audio_clip.get_clip_start_tick()
+        #bass note
+        first = 0
+        beat = int(beat * beat_per_measure * 120/90)
+        for i in range(measure_num):
+            chord_measure = chord[i]
+            #print chord_measure
+            root, third, fifth = chord_to_harmony.chord_to_harmony(chord_measure, music_key, midi.C_4)
+            #for notes in results['1']:
+            #note_start_time_within_audio = notes[0]
+            note_start_tick = beat*i + audio_clip_start_tick
+            #note_end_time_within_audio = notes[1]
+            note_end_tick = beat*i+beat + audio_clip_start_tick
+            note_pitch = root
+
+            new_clip.create_note(
+                pitch=note_pitch,
+                velocity=50,
+                start_tick=note_start_tick,
+                end_tick=note_end_tick
+            )
+        new_clip.adjust_clip_left(clip_start_tick=audio_clip.get_clip_start_tick(), resolve_conflict=False)
+        new_clip.adjust_clip_right(clip_end_tick=audio_clip.get_clip_end_tick(), resolve_conflict=False)
 
     def _midi_back_drum(
         new_midi_track: Track,
@@ -268,7 +321,7 @@ class TranscribeSinging(TuneflowPlugin):
         HT = 48
         first = 0
         first_measure = 0
-        #beat = beat * beat_per_measure
+        beat = int(beat * 120/90)
 
 
         for i in range(measure_num):

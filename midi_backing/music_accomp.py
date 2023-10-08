@@ -16,7 +16,7 @@ def music_accomp(midi_file):
     print('Time Signature: ', time_signature)
     print('Chord Progress: ', chord)
 
-
+    #beat = 400
     #add bass track
     bass_track = midi.Track()
     pattern.append(bass_track)

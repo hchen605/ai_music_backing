@@ -10,7 +10,7 @@ def add_bass_track(bass_track, channel_num, beat, music_key, time_signature, cho
     measure_num = np.size(chord)
     #print  measure_num
     beat_per_measure = time_signature.beatCount
-    #print beat_per_measure
+    #print(beat_per_measure)
 
     #bass note
     first = 0

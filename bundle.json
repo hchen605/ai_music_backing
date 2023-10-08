@@ -12,7 +12,7 @@
             "en": "Singing Transcription"
         },
         "pluginDescription": {
-            "zh": "将人声歌声转为MIDI旋律",
+            "zh": "Singing voice to full song generation",
             "en": "Transcribe singing to MIDI notes"
         },
         "version": "1.0.0",

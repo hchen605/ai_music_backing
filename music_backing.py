@@ -28,7 +28,7 @@ def notes2mid(notes):
     track = mido.MidiTrack()
     mid.tracks.append(track)
     mid.ticks_per_beat = 480
-    new_tempo = mido.bpm2tempo(120.0)
+    new_tempo = mido.bpm2tempo(90.0)
 
     track.append(mido.MetaMessage('set_tempo', tempo=new_tempo))
     track.append(mido.Message('program_change', program=0, time=0))

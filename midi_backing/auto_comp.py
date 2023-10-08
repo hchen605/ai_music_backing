@@ -36,7 +36,7 @@ pattern.append(string_track)
 channel_num = 2
 add_string_track.add_string_track(string_track, channel_num, beat, music_key, time_signature, chord)
 
-midi.write_midifile("test_hh.mid", pattern)
+midi.write_midifile("9_Balader_hh.mid", pattern)
 #midi.write_midifile("69.Mother_hh.mid", pattern)
 
 
