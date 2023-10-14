@@ -19,6 +19,8 @@ def read_midi_parameter(midi_file):
     #print(temp_midi)
     temp_midi_chords = pattern.chordify()
     # print(temp_midi_chords[3])#<music21.chord.Chord F4>
+    # print(temp_midi_chords[4])
+    # print(temp_midi_chords[5])
 
     temp_midi.insert(0, temp_midi_chords)
     music_key = temp_midi.analyze('key')

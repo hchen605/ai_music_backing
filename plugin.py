@@ -14,6 +14,7 @@ import music_backing
 import read_midi_parameter, chord_to_harmony
 import midi
 import numpy as np
+import random
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 predictor = EffNetPredictor(device=device, model_path=str(
@@ -217,7 +218,7 @@ class TranscribeSinging(TuneflowPlugin):
         audio_clip_start_tick = audio_clip.get_clip_start_tick()
         #bass note
         first = 0
-        beat = int(beat * beat_per_measure * 120/90)
+        beat = beat * beat_per_measure
         for i in range(measure_num):
             chord_measure = chord[i]
             #print chord_measure
@@ -260,6 +261,7 @@ class TranscribeSinging(TuneflowPlugin):
         #print beat_per_measure
 
         new_midi_track.set_instrument(48, False)#string
+        new_midi_track.set_volume(0.5)
         new_clip = new_midi_track.create_midi_clip(
             clip_start_tick=audio_clip.get_clip_start_tick(),
             clip_end_tick=audio_clip.get_clip_end_tick(),
@@ -268,7 +270,7 @@ class TranscribeSinging(TuneflowPlugin):
         audio_clip_start_tick = audio_clip.get_clip_start_tick()
         #bass note
         first = 0
-        beat = int(beat * beat_per_measure * 120/90)
+        beat = beat * beat_per_measure
         for i in range(measure_num):
             chord_measure = chord[i]
             #print chord_measure
@@ -278,7 +280,9 @@ class TranscribeSinging(TuneflowPlugin):
             note_start_tick = beat*i + audio_clip_start_tick
             #note_end_time_within_audio = notes[1]
             note_end_tick = beat*i+beat + audio_clip_start_tick
-            note_pitch = root
+            har = [root, third, fifth]
+            har = har[random.randint(0, 2)]
+            note_pitch = har
 
             new_clip.create_note(
                 pitch=note_pitch,
@@ -305,6 +309,7 @@ class TranscribeSinging(TuneflowPlugin):
         #print beat_per_measure
 
         new_midi_track.set_instrument(9, True)#drum
+        new_midi_track.set_volume(0.5)
         new_clip = new_midi_track.create_midi_clip(
             clip_start_tick=audio_clip.get_clip_start_tick(),
             clip_end_tick=audio_clip.get_clip_end_tick(),
@@ -321,19 +326,31 @@ class TranscribeSinging(TuneflowPlugin):
         HT = 48
         first = 0
         first_measure = 0
-        beat = int(beat * 120/90)
+        beat = beat 
+        th_1 = 0.8
+        th_2 = 0.6
+        th_3 = 0.4
 
 
         for i in range(measure_num):
-            first = 0
+            #first = 0
+            if i < 2:
+                th = th_1
+            elif 2 <= i < 4:
+                th = th_2
+            else:
+                th = th_3
             for j in range(beat_per_measure):
-                if first == 0:
-                    if i % 2 == 0:
-                        hit = BD
-                    else:
-                        hit = SD
+                #if first == 0:
+                if j % 4 == 0:
+                    hit = BD
+                elif j % 4 == 2:
+                    hit = SD
                 else:
-                    hit = HH
+                    if np.random.rand() > th:
+                        hit = HH
+                    else:
+                        hit = 0
                 if i == measure_num - 1:
                     # on = midi.NoteOnEvent(tick = beat*first_measure, velocity = 80, pitch = HH)
                     # drum_track.append(on)
@@ -358,8 +375,8 @@ class TranscribeSinging(TuneflowPlugin):
                     start_tick=note_start_tick,
                     end_tick=note_end_tick
                 )
-                first = 1
-                first_measure = 1
+                #first = 1
+                #first_measure = 1
 
             
         new_clip.adjust_clip_left(clip_start_tick=audio_clip.get_clip_start_tick(), resolve_conflict=False)

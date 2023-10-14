@@ -1,6 +1,7 @@
 import midi
 import numpy as np
 from chord_to_harmony import *
+#import random
 
 def add_string_track(string_track, channel_num, beat, music_key, time_signature, chord):
 
@@ -18,8 +19,10 @@ def add_string_track(string_track, channel_num, beat, music_key, time_signature,
         chord_measure = chord[i]
         #print chord_measure
         root, third, fifth = chord_to_harmony(chord_measure, music_key, midi.C_4)
+        # har = [root, third, fifth]
+        # har = har[random.randint(0, 2)]
         on = midi.NoteOnEvent(tick = 0, velocity = 80, pitch = root)
-        first = 1
+        #first = 1
         string_track.append(on)
         off = midi.NoteOffEvent(tick = beat*beat_per_measure, velocity = 80, pitch = root)
         string_track.append(off)
