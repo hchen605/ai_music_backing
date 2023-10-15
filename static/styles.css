@@ -1,0 +1,7 @@
+body {
+    background-image: url('/static/back.png'); /* Adjust the image path as needed */
+    background-size: 85%; /* Adjust the background size as needed */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: 50% -16%; /* Center the background image */
+}
+
