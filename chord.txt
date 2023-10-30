@@ -4,47 +4,59 @@ music21.chord.Chord G3
 music21.chord.Chord G3
 music21.chord.Chord A3
 music21.chord.Chord A3
+music21.chord.Chord G3 A3
 music21.chord.Chord G3
-music21.chord.Chord E3
+music21.chord.Chord F3
 music21.chord.Chord F3
 music21.chord.Chord E3
 music21.chord.Chord E3
 music21.chord.Chord E3
-music21.chord.Chord D3
-music21.chord.Chord D3
-music21.chord.Chord G3
-music21.chord.Chord G3
-music21.chord.Chord G3
-music21.chord.Chord G3
-music21.chord.Chord F#3
-music21.chord.Chord F#3
-music21.chord.Chord F#3
-music21.chord.Chord E3
 music21.chord.Chord E3
 music21.chord.Chord D3
-music21.chord.Chord D3
-music21.chord.Chord D3
-music21.chord.Chord G3
-music21.chord.Chord G3
-music21.chord.Chord F3
-music21.chord.Chord F3 F#3
-music21.chord.Chord F#3
-music21.chord.Chord E3
-music21.chord.Chord E3
 music21.chord.Chord D3
 music21.chord.Chord C3
 music21.chord.Chord G3
 music21.chord.Chord G3
-music21.chord.Chord A3
-music21.chord.Chord A3
-music21.chord.Chord A3
-music21.chord.Chord A3
+music21.chord.Chord G3
 music21.chord.Chord G3
 music21.chord.Chord F3
 music21.chord.Chord F3
+music21.chord.Chord F3
+music21.chord.Chord E3 F3
+music21.chord.Chord E3
+music21.chord.Chord E3
+music21.chord.Chord E3
+music21.chord.Chord D3
+music21.chord.Chord G3
+music21.chord.Chord G3
+music21.chord.Chord G3
+music21.chord.Chord F3 G3
+music21.chord.Chord F3
+music21.chord.Chord F3
+music21.chord.Chord F3
 music21.chord.Chord E3
 music21.chord.Chord E3
 music21.chord.Chord E3
 music21.chord.Chord D3
 music21.chord.Chord D3
-music21.chord.Chord C#3
+music21.chord.Chord D3
+music21.chord.Chord C3
+music21.chord.Chord C3
+music21.chord.Chord G3
+music21.chord.Chord G3
+music21.chord.Chord G3
+music21.chord.Chord A3
+music21.chord.Chord A3
+music21.chord.Chord G3 A3
+music21.chord.Chord G3
+music21.chord.Chord F3
+music21.chord.Chord F3
+music21.chord.Chord E3 F3
+music21.chord.Chord E3
+music21.chord.Chord E3
+music21.chord.Chord E3
+music21.chord.Chord E3
+music21.chord.Chord D3 E3
+music21.chord.Chord D3
+music21.chord.Chord D3
+music21.chord.Chord C3

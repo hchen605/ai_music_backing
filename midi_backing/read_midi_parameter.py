@@ -35,6 +35,7 @@ def read_midi_parameter(midi_file):
     fp = open("chord.txt", "w")
     for thisChord in temp_midi_chords.recurse().getElementsByClass(chord.Chord):
         #print(thisChord)
+        #print(thisChord.measureNumber, thisChord.beatStr, thisChord)
         note_beat = str(thisChord).strip('<>')
         fp.write(note_beat)
         fp.write("\n")

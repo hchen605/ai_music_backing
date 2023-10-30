@@ -99,24 +99,24 @@ def main(args):
     # print ("use", device)
     os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
     #'''
-    my_predictor = EffNetPredictor(device=device, model_path=args.model_path)
-    song_id = '1'
-    results = {}
-    do_svs = args.svs
+    # my_predictor = EffNetPredictor(device=device, model_path=args.model_path)
+    # song_id = '1'
+    # results = {}
+    # do_svs = args.svs
     
-    print('Forwarding model...')
+    # print('Forwarding model...')
 
-    if os.path.isfile(input_path):
-        predict_one_song(my_predictor, input_path, song_id, results, do_svs=do_svs
-            , tomidi=True, output_path=output_path, onset_thres=float(args.onset_thres), offset_thres=float(args.offset_thres))
+    # if os.path.isfile(input_path):
+    #     predict_one_song(my_predictor, input_path, song_id, results, do_svs=do_svs
+    #         , tomidi=True, output_path=output_path, onset_thres=float(args.onset_thres), offset_thres=float(args.offset_thres))
 
-    elif os.path.isdir(input_path):
-        predict_whole_dir(my_predictor, input_path, do_svs=do_svs
-            , output_json_path=output_path, onset_thres=float(args.onset_thres), offset_thres=float(args.offset_thres))
-    else:
-        print ("\"input\" argument is not a valid path/directory, no audio is trancribed......")
+    # elif os.path.isdir(input_path):
+    #     predict_whole_dir(my_predictor, input_path, do_svs=do_svs
+    #         , output_json_path=output_path, onset_thres=float(args.onset_thres), offset_thres=float(args.offset_thres))
+    # else:
+    #     print ("\"input\" argument is not a valid path/directory, no audio is trancribed......")
 
-    print('=== transcription done ====')
+    # print('=== transcription done ====')
     #'''
     midi_path = output_path[:-4] + '_backing.mid'
     pattern = music_accomp.music_accomp(output_path)

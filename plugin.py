@@ -56,6 +56,62 @@ class TranscribeSinging(TuneflowPlugin):
                     }
                 }
             },
+            "Valence": {
+                "displayName": {
+                    "zh": 'Emotional Valence',
+                    "en": 'Emotional Valence',
+                },
+                "defaultValue": 0.5,
+                "description": {
+                    "zh": 'The higher the threshold, the lower the number of MIDI notes that will be transcribed',
+                    "en": 'The higher the threshold, the lower the number of MIDI notes that will be transcribed',
+                },
+                "widget": {
+                    "type": WidgetType.Slider.value,
+                    "config": {
+                        "minValue": 0.1,
+                        "maxValue": 0.9,
+                        "step": 0.1
+                    }
+                },
+            },
+            "Arousal": {
+                "displayName": {
+                    "zh": 'Emotional Arousal',
+                    "en": 'Emotional Arousal',
+                },
+                "defaultValue": 0.5,
+                "description": {
+                    "zh": 'The higher the threshold, the lower the number of MIDI notes that will be transcribed',
+                    "en": 'The higher the threshold, the lower the number of MIDI notes that will be transcribed',
+                },
+                "widget": {
+                    "type": WidgetType.Slider.value,
+                    "config": {
+                        "minValue": 0.1,
+                        "maxValue": 0.9,
+                        "step": 0.1
+                    }
+                },
+            },
+            "Genre": {
+                "displayName": {
+                    "zh": 'Music Genre',
+                    "en": 'Music Genre',
+                },
+                "defaultValue": 'Pop',
+                "description": {
+                    "zh": 'Genre',
+                    "en": 'Genre',
+                },
+                "widget": {
+                    "type": WidgetType.Select.value,
+                    "config": {
+                        "label": ['Rock','Jazz'],
+                        "value": 'Rock'
+                    }
+                },
+            },
             "onsetThreshold": {
                 "displayName": {
                     "zh": 'Onset threshold',
@@ -93,7 +149,7 @@ class TranscribeSinging(TuneflowPlugin):
                         "step": 0.1
                     }
                 },
-            }
+            },
         }
 
     @staticmethod
@@ -250,10 +306,10 @@ class TranscribeSinging(TuneflowPlugin):
         audio_clip: Clip,
         midi_file='./data/plug_trans.mid'):
         beat, music_key, time_signature, chord, pattern = read_midi_parameter.read_midi_parameter(midi_file)
-        print('Beat: ', beat)
-        print('Key: ', music_key)
-        print('Time Signature: ', time_signature)
-        print('Chord Progress: ', chord)
+        # print('Beat: ', beat)
+        # print('Key: ', music_key)
+        # print('Time Signature: ', time_signature)
+        # print('Chord Progress: ', chord)
 
         measure_num = np.size(chord)
         #print  measure_num
