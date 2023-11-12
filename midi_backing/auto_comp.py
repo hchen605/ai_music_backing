@@ -26,7 +26,7 @@ add_bass_track.add_bass_track(bass_track, channel_num, beat, music_key, time_sig
 drum_track = midi.Track()
 pattern.append(drum_track)
 
-channel_num = 9
+channel_num = 11
 add_drum_track.add_drum_track(drum_track, channel_num, beat, time_signature, chord)
 
 

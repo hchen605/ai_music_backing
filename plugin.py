@@ -2,7 +2,7 @@ from __future__ import annotations
 import sys
 sys.path.append('singing_transcription')
 sys.path.append('midi_backing')
-from tuneflow_py import TuneflowPlugin, Song, ParamDescriptor, WidgetType, TrackType, InjectSource, Track, Clip, TuneflowPluginTriggerData, ClipAudioDataInjectData
+from tuneflow_py import TuneflowPlugin, Song, ParamDescriptor, WidgetType, TrackType, InjectSource, Track, Clip, TuneflowPluginTriggerData, ClipAudioDataInjectData, SelectWidgetOption
 from typing import Any
 from data_utils.seq_dataset import SeqDataset
 from predictor import EffNetPredictor
@@ -111,6 +111,45 @@ class TranscribeSinging(TuneflowPlugin):
                         "value": 'Rock'
                     }
                 },
+            },
+            "Instrument": {
+                "displayName": {
+                    "zh": 'Instrument',
+                    "en": 'Instrument',
+                },
+                "defaultValue": 'Bass',
+                "description": {
+                    "zh": 'Instrument',
+                    "en": 'Instrument',
+                },
+                "widget": {
+                    "type": WidgetType.InstrumentSelector.value,
+                    "config": {
+                        "label": ['Rock','Jazz'],
+                        "value": 'Rock'
+                    }
+                },
+            },
+            "prompt": {
+                "displayName": {
+                    "en": "Prompt",
+                    "zh": "Prompt for Music"
+                },
+                "description": {
+                    "en": "A short sentence to describe the audio you want to generate",
+                    "zh": "A short sentence to describe the music you want to generate"
+                },
+                "defaultValue": None,
+                "widget": {
+                    "type": WidgetType.TextArea.value,
+                    "config": {
+                        "placeholder": {
+                            "zh": "e.g. A pop alike music in sad emotion",
+                            "en": "e.g. A hammer is hitting a tree"
+                        },
+                        "maxLength": 140
+                    }
+                }
             },
             "onsetThreshold": {
                 "displayName": {

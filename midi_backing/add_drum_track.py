@@ -4,7 +4,7 @@ import numpy as np
 
 def add_drum_track(drum_track, channel_num, beat, time_signature, chord):
 
-    drum = midi.ProgramChangeEvent(tick=0, channel=channel_num, data=[0])
+    drum = midi.ProgramChangeEvent(tick=0, channel=channel_num, data=[1])
     drum_track.append(drum)
 
     measure_num = np.size(chord)
