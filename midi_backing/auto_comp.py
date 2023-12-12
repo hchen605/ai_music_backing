@@ -6,7 +6,7 @@ import add_bass_track
 import add_drum_track 
 import add_string_track
 
-midi_file = "9_Balader.mid"
+midi_file = "../data/shall_C.midi"
 
 beat, music_key, time_signature, chord, pattern = read_midi_parameter.read_midi_parameter(midi_file)
 
@@ -36,7 +36,7 @@ pattern.append(string_track)
 channel_num = 2
 add_string_track.add_string_track(string_track, channel_num, beat, music_key, time_signature, chord)
 
-midi.write_midifile("9_Balader_hh.mid", pattern)
+midi.write_midifile("shall_back.mid", pattern)
 #midi.write_midifile("69.Mother_hh.mid", pattern)
 
 

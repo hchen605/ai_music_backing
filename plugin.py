@@ -114,8 +114,8 @@ class TranscribeSinging(TuneflowPlugin):
             },
             "Instrument": {
                 "displayName": {
-                    "zh": 'Instrument',
-                    "en": 'Instrument',
+                    "zh": 'Instrumentation',
+                    "en": 'Instrumentation',
                 },
                 "defaultValue": 'Bass',
                 "description": {

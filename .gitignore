@@ -143,3 +143,5 @@ remix/log*
 remix/snr*
 remix/vb*
 remix/awgn*
+
+midi_backing/*.mid
